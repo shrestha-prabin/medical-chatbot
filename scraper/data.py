@@ -66,8 +66,45 @@ def fetch_page_details(alphabet, title, url):
     with open(filename, 'w') as f:
        json.dump(output_data, f)
 
+
+def check_progress():
+  meta_data = get_meta_data()
+  total = 0
+  completed = 0
+
+  for key, value in meta_data.items():
+     for item in value:
+      alphabet= key
+      title = item['title']
+      url = item['url']
+      filename = f'data/{alphabet}/{url.split('/')[-1]}.json'
+      if os.path.exists(filename):
+        completed += 1
+      total += 1
+  print('Pages Scraped')
+  print(total, completed, f'{completed/total * 100:.2f}',)
+
+
+def merge_all():
+  data_list = []
+  for entry in os.scandir('./data'):
+    if os.path.isdir(entry.path):
+      for data_entry in os.scandir(entry.path):
+        with open(data_entry.path, 'r') as f:
+          data = json.load(f)
+          data_list.extend(data)
+
+  print(len(data_list))
+  with open('data.json', 'w') as f:
+    json.dump(data_list, f)
+
+
 if __name__ == "__main__":
     meta_data = get_meta_data()
+
+    # check_progress()
+    merge_all()
+    exit()
 
     for key, value in meta_data.items():
        for item in value:

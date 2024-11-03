@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
@@ -11,7 +12,7 @@ class Category(models.Model):
 
 class Information(models.Model):
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
-    subcategory = models.CharField(max_length=200)
+    subcategory = models.CharField(max_length=200, blank=True, null=True)
     title = models.CharField(max_length=200)
     text = models.TextField(blank=True, null=True)
 

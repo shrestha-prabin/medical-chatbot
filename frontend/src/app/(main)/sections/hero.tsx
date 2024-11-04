@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { InputGroup } from "@/components/ui/input-group";
-import { Flex, Input, Stack } from "@chakra-ui/react";
+import { Flex, HStack, Input, Stack } from "@chakra-ui/react";
 import { LuHeartPulse } from "react-icons/lu";
 
 export default function HeroSection() {
@@ -8,16 +8,18 @@ export default function HeroSection() {
     <Stack mt={"30vh"} alignItems={"center"}>
       <form>
         <Stack w={"90vw"} maxW={"40em"}>
-          <InputGroup
-            startElement={<LuHeartPulse size={20} />}
-            endElement={
-              <Button variant={"solid"} size={"xl"} me={-3}>
-                Send
-              </Button>
-            }
-          >
-            <Input size={"xl"} rounded={"full"} placeholder="Ask Anything..." />
-          </InputGroup>
+          <HStack>
+            <InputGroup startElement={<LuHeartPulse size={20} />} flex={1}>
+              <Input
+                size={"xl"}
+                rounded={"full"}
+                placeholder="Ask Anything..."
+              />
+            </InputGroup>
+            <Button variant={"solid"} size={"xl"} me={-3} type="submit">
+              Send
+            </Button>
+          </HStack>
 
           <Flex gap={2} maxW={"100%"} flexWrap={"wrap"}>
             <Button size={"xs"} variant={"outline"}>

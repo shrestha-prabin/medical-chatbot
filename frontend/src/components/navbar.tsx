@@ -1,9 +1,19 @@
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
+import { Category } from "@/types";
 import { Box, Container, Heading, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+import { LuChevronDown } from "react-icons/lu";
 import { Button } from "./ui/button";
 
-type NavbarProps = {} & React.HtmlHTMLAttributes<HTMLDivElement>;
+type NavbarProps = {
+  categories: Category[];
+} & React.HtmlHTMLAttributes<HTMLDivElement>;
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
   ({ ...props }, ref) => {
@@ -17,15 +27,24 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
               <Link href="/">
                 <Button variant={"ghost"}>Home</Button>
               </Link>
-              <Link href="/">
-                <Button variant={"ghost"}>Browse</Button>
-              </Link>
-              <Link href="/">
-                <Button variant={"ghost"}>About Us</Button>
-              </Link>
-              <Link href="/">
-                <Button variant={"ghost"}>Contact Us</Button>
-              </Link>
+              <MenuRoot>
+                <MenuTrigger>
+                  <Button as="div" variant={"ghost"}>
+                    Browse
+                    <LuChevronDown />
+                  </Button>
+                </MenuTrigger>
+
+                <MenuContent>
+                  {props.categories.map((item) => (
+                    <Link href={`/${item.slug}`}>
+                      <MenuItem key={item.slug} value={item.slug}>
+                        {item.name}
+                      </MenuItem>
+                    </Link>
+                  ))}
+                </MenuContent>
+              </MenuRoot>
 
               <Link href="/">
                 <Button variant={"outline"}>Login</Button>

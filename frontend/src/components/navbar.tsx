@@ -24,9 +24,9 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
             <Heading>Medical Chatbot</Heading>
 
             <HStack>
-              <Link href="/">
-                <Button variant={"ghost"}>Home</Button>
-              </Link>
+              <Button variant={"ghost"} as={Link} href="/">
+                Home
+              </Button>
               <MenuRoot>
                 <MenuTrigger>
                   <Button as="div" variant={"ghost"}>
@@ -37,22 +37,30 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
 
                 <MenuContent>
                   {props.categories.map((item) => (
-                    <Link href={`/${item.slug}`}>
-                      <MenuItem key={item.slug} value={item.slug}>
-                        {item.name}
-                      </MenuItem>
-                    </Link>
+                    <MenuItem
+                      key={item.slug}
+                      value={item.slug}
+                      as={Link}
+                      href={`/${item.slug}`}
+                    >
+                      {item.name}
+                    </MenuItem>
                   ))}
                 </MenuContent>
               </MenuRoot>
 
-              <Link href="/">
-                <Button variant={"outline"}>Login</Button>
-              </Link>
+              <Button variant={"outline"} as={Link} href="/">
+                Login
+              </Button>
 
-              <Link href="/">
-                <Button variant={"solid"}>Sign Up</Button>
-              </Link>
+              <Button
+                variant={"solid"}
+                as={Link}
+                href="/"
+                colorPalette={"teal"}
+              >
+                Sign Up
+              </Button>
             </HStack>
           </HStack>
         </Container>

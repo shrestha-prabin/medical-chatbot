@@ -1,6 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
-import { Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 
 export default async function RootLayout({
   children,
@@ -13,7 +13,7 @@ export default async function RootLayout({
   return (
     <Stack>
       <Navbar categories={categories} />
-      {children}
+      <Box minH={"80vh"}>{children}</Box>
       <Footer />
     </Stack>
   );

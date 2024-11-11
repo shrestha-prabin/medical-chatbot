@@ -7,7 +7,8 @@ export type Category = {
 export type Information = {
   id: string;
   category?: string;
-  subcategory?: string;
+  thumbnail?: string;
+  summary?: string;
   title: string;
   text?: string;
 };

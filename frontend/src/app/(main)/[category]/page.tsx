@@ -22,7 +22,7 @@ export default async function Page({
   return (
     <div>
       <Container>
-        <SimpleGrid columns={{ md: 2, lg: 3, xl: 4 }} gap={8}>
+        <SimpleGrid columns={{ md: 2, lg: 3, xl: 4 }} gap={8} py={8}>
           {information.map((item) => (
             <Link
               key={`${params.category}-${item.title}`}

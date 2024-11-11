@@ -11,9 +11,11 @@ export default async function RootLayout({
   let categories = await data.json();
 
   return (
-    <Stack>
+    <Stack gap={0}>
       <Navbar categories={categories} />
       <Box minH={"80vh"}>{children}</Box>
+
+      <hr />
       <Footer />
     </Stack>
   );

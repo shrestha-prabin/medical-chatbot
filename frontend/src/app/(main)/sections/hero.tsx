@@ -2,7 +2,7 @@ import { Box, HStack, Image, Text } from "@chakra-ui/react";
 
 export default function HeroSection() {
   return (
-    <Box py={16}>
+    <Box py={8}>
       <HStack justifyContent={"center"}>
         <Text maxW={500}>
           {

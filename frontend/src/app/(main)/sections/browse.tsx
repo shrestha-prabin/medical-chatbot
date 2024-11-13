@@ -9,7 +9,7 @@ export default async function BrowseSection() {
   let categories: Category[] = await data.json();
 
   return (
-    <Stack alignItems={"center"} py={16}>
+    <Stack alignItems={"center"} py={8}>
       <Heading>Browse</Heading>
 
       <SimpleGrid columns={3} gap={8} mt={4}>

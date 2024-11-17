@@ -23,8 +23,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <ChakraButton
         disabled={loading || disabled}
         ref={ref}
-        {...rest}
         rounded={"full"}
+        {...rest}
       >
         {loading && !loadingText ? (
           <>

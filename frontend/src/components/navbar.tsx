@@ -1,3 +1,5 @@
+"use client";
+
 import {
   MenuContent,
   MenuItem,
@@ -5,7 +7,8 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { Category } from "@/types";
-import { Box, Container, Heading, HStack } from "@chakra-ui/react";
+import { Box, Container, Heading, HStack, Text } from "@chakra-ui/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { LuChevronDown } from "react-icons/lu";
@@ -13,6 +16,7 @@ import { Button } from "./ui/button";
 
 type NavbarProps = {
   categories: Category[];
+  user?: string | null;
 } & React.HtmlHTMLAttributes<HTMLDivElement>;
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
@@ -49,18 +53,30 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                 </MenuContent>
               </MenuRoot>
 
-              <Button variant={"outline"} as={Link} href="/">
-                Login
-              </Button>
+              {props.user ? (
+                <>
+                  <Text as={"u"}>@{props.user}</Text>
 
-              <Button
-                variant={"solid"}
-                as={Link}
-                href="/"
-                colorPalette={"teal"}
-              >
-                Sign Up
-              </Button>
+                  <Button variant={"outline"} onClick={() => signOut()} ml={2}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant={"outline"} as={Link} href="/login">
+                    Login
+                  </Button>
+
+                  <Button
+                    variant={"solid"}
+                    as={Link}
+                    href="/signup"
+                    colorPalette={"teal"}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </HStack>
           </HStack>
         </Container>

@@ -13,8 +13,9 @@ load_dotenv()
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 PINECONE_API_ENV = os.environ.get("PINECONE_API_ENV")
 
-LLAMA_MODEL_PATH = os.environ.get("LLAMA_MODEL_PATH")
-
+LLAMA_MODEL_PATH = (
+    "/Users/prabin/Desktop/medical-chatbot/models/llama-2-7b-chat.ggmlv3.q4_0.bin"
+)
 
 prompt_template = """
 Use the following pieces of information to answer the user's question.

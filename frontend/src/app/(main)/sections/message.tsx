@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { InputGroup } from "@/components/ui/input-group";
 import { Center, Flex, Heading, HStack, Input, Stack } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { LuHeartPulse } from "react-icons/lu";
 
@@ -11,13 +12,19 @@ export default function MessageSection({
   onSubmit,
 }: {
   disabled?: boolean;
-  onSubmit?: (query: string) => void;
+  onSubmit?: (q: string) => void;
 }) {
   const { register, handleSubmit, reset } = useForm<{ query: string }>();
 
+  const router = useRouter();
+
   const submitForm = (data: { query: string }) => {
-    onSubmit?.(data.query);
-    reset();
+    if (onSubmit) {
+      onSubmit?.(data.query);
+      reset();
+    } else {
+      router.push(`/chat?q=${data.query}`);
+    }
   };
 
   return (
@@ -62,7 +69,7 @@ export default function MessageSection({
                 bg="white"
                 color="black"
                 disabled={disabled}
-                onClick={() => onSubmit?.(item)}
+                onClick={() => submitForm?.({ query: item })}
               >
                 {item}
               </Button>

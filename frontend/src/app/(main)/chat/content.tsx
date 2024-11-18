@@ -2,7 +2,8 @@
 
 import { MessageQnA } from "@/components/message-qna";
 import { Message } from "@/types";
-import { Box, HStack, Stack } from "@chakra-ui/react";
+import { Box, Flex, Stack } from "@chakra-ui/react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import MessageSection from "../sections/message";
@@ -18,11 +19,27 @@ export default function Content({
 
   const contentEndRef = useRef<HTMLDivElement>(null);
 
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    console.log({ searchParams });
+
+    if (searchParams && !isSubmitting) {
+      const q = searchParams.get("q");
+      if (q) {
+        handleSubmit(q);
+      }
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     contentEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSubmit = async (query: string) => {
+    const lastQuery = messages[messages.length - 1];
+    if (lastQuery?.user_prompt == query) return;
+
     if (query) {
       setIsSubmitting(true);
       setMessages((messages) => [...messages, { user_prompt: query }]);
@@ -44,7 +61,11 @@ export default function Content({
 
   return (
     <Box bg="orange.100">
-      <HStack px={8}>
+      <Flex
+        px={8}
+        direction={{ base: "column", md: "row" }}
+        alignItems={"center"}
+      >
         <Stack flex={1} h={"85vh"} overflowY={"scroll"} p={4}>
           {messages.map((item, i) => {
             return <MessageQnA key={i} data={item} />;
@@ -55,7 +76,7 @@ export default function Content({
         <Box>
           <MessageSection disabled={isSubmitting} onSubmit={handleSubmit} />
         </Box>
-      </HStack>
+      </Flex>
     </Box>
   );
 }

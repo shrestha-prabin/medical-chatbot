@@ -13,7 +13,7 @@ export default async function RootLayout({
   let categories = await data.json();
 
   return (
-    <Stack gap={0} overflowY={"scroll"}>
+    <Stack gap={0}>
       <Navbar categories={categories} user={res?.user?.username} />
       <Box minH={"80vh"}>{children}</Box>
     </Stack>

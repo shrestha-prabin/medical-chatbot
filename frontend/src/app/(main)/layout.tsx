@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { Box, Stack } from "@chakra-ui/react";
 
@@ -14,12 +13,9 @@ export default async function RootLayout({
   let categories = await data.json();
 
   return (
-    <Stack gap={0}>
+    <Stack gap={0} overflowY={"scroll"}>
       <Navbar categories={categories} user={res?.user?.username} />
       <Box minH={"80vh"}>{children}</Box>
-
-      <hr />
-      <Footer />
     </Stack>
   );
 }

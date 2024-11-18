@@ -55,7 +55,13 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
 
               {props.user ? (
                 <>
-                  <Text as={"u"}>@{props.user}</Text>
+                  <Button variant={"ghost"} as={Link} href="/chat">
+                    Chat
+                  </Button>
+
+                  <Text as={"u"} ml={2}>
+                    @{props.user}
+                  </Text>
 
                   <Button variant={"outline"} onClick={() => signOut()} ml={2}>
                     Logout

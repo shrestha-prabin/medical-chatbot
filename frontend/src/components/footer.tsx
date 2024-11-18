@@ -6,7 +6,7 @@ type FooterProps = {} & React.HtmlHTMLAttributes<HTMLDivElement>;
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
   ({ ...props }, ref) => {
     return (
-      <Box as={"footer"} ref={ref} {...props} py={4}>
+      <Box as={"footer"} ref={ref} {...props} py={2}>
         <Container>
           <Stack alignItems={"center"}>
             <Text fontSize={"sm"} color={"gray.500"} textAlign={"center"}>

@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Box, Container, Stack } from "@chakra-ui/react";
 import BrowseSection from "./sections/browse";
 import HeroSection from "./sections/hero";
@@ -22,6 +23,9 @@ export default function Page() {
       </Box>
 
       <Box h={8} />
+
+      <hr />
+      <Footer />
     </Stack>
   );
 }

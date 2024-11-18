@@ -14,6 +14,7 @@ def chat(query):
     content = f"""
     Answer this medical question "{query}". Give answer in 100 words or less.
     If the query is not related to medical field, don't give any answer.
+    Don't mention phrases like "A question from the medical field!"
     """
     messages = [
         {

@@ -5,8 +5,8 @@ import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 
 export default async function BrowseSection() {
-  let data = await fetch(`${process.env.BASE_URL}/api/knowledge/categories/`);
-  let categories: Category[] = await data.json();
+  const data = await fetch(`${process.env.BASE_URL}/api/knowledge/categories/`);
+  const categories: Category[] = await data.json();
 
   return (
     <Stack alignItems={"center"} py={8}>

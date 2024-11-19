@@ -8,7 +8,7 @@ export function parseError(error: any) {
     } else {
       return error;
     }
-  } catch (_) {
+  } catch (_e) {
     return error;
   }
 }

@@ -24,8 +24,10 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
     return (
       <Box as={"nav"} ref={ref} {...props} borderBottomWidth={1}>
         <Container>
-          <HStack py={8} justify={"space-between"}>
-            <Heading>Medical Chatbot</Heading>
+          <HStack height={"10vh"} justify={"space-between"}>
+            <Link href={"/"}>
+              <Heading>Medical Chatbot</Heading>
+            </Link>
 
             <HStack>
               <Button variant={"ghost"} as={Link} href="/">

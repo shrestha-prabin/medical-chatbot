@@ -9,9 +9,11 @@ export default async function Page({
 }: {
   params: { category: string; slug: string };
 }) {
-  let data = await fetch(`${process.env.BASE_URL}/api/knowledge/information/`);
-  let informationList: Information[] = await data.json();
-  let information = informationList.find(
+  const data = await fetch(
+    `${process.env.BASE_URL}/api/knowledge/information/`
+  );
+  const informationList: Information[] = await data.json();
+  const information = informationList.find(
     (item) => _.kebabCase(item.title) == params.slug
   );
 

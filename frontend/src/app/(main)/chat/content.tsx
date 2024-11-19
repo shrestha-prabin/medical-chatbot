@@ -3,7 +3,7 @@
 import { MessageQnA } from "@/components/message-qna";
 import { Message } from "@/types";
 import { Box, Flex, Stack } from "@chakra-ui/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import MessageSection from "../sections/message";
@@ -20,10 +20,9 @@ export default function Content({
   const contentEndRef = useRef<HTMLDivElement>(null);
 
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
-    console.log({ searchParams });
-
     if (searchParams && !isSubmitting) {
       const q = searchParams.get("q");
       if (q) {
@@ -66,7 +65,7 @@ export default function Content({
         direction={{ base: "column", md: "row" }}
         alignItems={"center"}
       >
-        <Stack flex={1} h={"85vh"} overflowY={"scroll"} p={4}>
+        <Stack flex={1} h={"90vh"} overflowY={"scroll"} p={4}>
           {messages.map((item, i) => {
             return <MessageQnA key={i} data={item} />;
           })}

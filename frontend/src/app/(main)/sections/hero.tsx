@@ -10,7 +10,7 @@ export default function HeroSection() {
           }
         </Text>
 
-        <Image src="/chat.svg" height={150} width={150} />
+        <Image src="/chat.svg" alt="" height={150} width={150} />
       </HStack>
     </Box>
   );

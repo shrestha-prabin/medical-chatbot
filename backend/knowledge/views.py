@@ -1,6 +1,7 @@
 import json
 import os
 
+from django.views.generic.detail import DetailView
 from rest_framework import generics, permissions, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -36,15 +37,23 @@ class InformationListView(generics.ListAPIView):
     http_method_names = ["get"]
 
 
+class InformationDetailView(generics.RetrieveAPIView):
+    queryset = Information.objects.all()
+    serializer_class = InformationSerializer
+
+    def get(self, request, *args, **kwargs):
+        information = self.get_object()
+        serializer = self.get_serializer(information)
+        return Response(serializer.data)
+
+
 class InformationScraperView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
         category = Category.objects.filter(name="Diseases")[0]
-        print(category)
 
         for entry in os.scandir("knowledge/data/A"):
-            # print(entry.path)
             with open(entry.path, "r") as f:
                 data = json.load(f)
 
@@ -61,5 +70,4 @@ class InformationScraperView(APIView):
                     )
 
                     info.save()
-                    print("saved")
         return Response({}, status=status.HTTP_201_CREATED)

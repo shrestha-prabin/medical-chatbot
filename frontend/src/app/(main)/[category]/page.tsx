@@ -1,14 +1,15 @@
 import { Category, Information } from "@/types";
 import { Card, Container, SimpleGrid } from "@chakra-ui/react";
+import { cookies } from "next/headers";
 import Link from "next/link";
-
-import _ from "lodash";
 
 export default async function Page({
   params,
 }: {
   params: { category: string };
 }) {
+  const _cookies = cookies();
+
   const data = await fetch(`${process.env.BASE_URL}/api/knowledge/categories/`);
   const categories: Category[] = await data.json();
   const category = categories.find((item) => item.slug == params.category);
@@ -28,7 +29,7 @@ export default async function Page({
           {information.map((item) => (
             <Link
               key={`${params.category}-${item.title}`}
-              href={`/${params.category}/${_.kebabCase(item.title)}`}
+              href={`/${params.category}/${item.id}`}
             >
               <Card.Root maxW="sm" overflow="hidden">
                 {/* <Image

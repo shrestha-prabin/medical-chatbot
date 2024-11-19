@@ -15,6 +15,11 @@ urlpatterns = [
         name="information-create",
     ),
     path(
+        "information/<int:pk>/",
+        views.InformationDetailView.as_view(),
+        name="information-detail",
+    ),
+    path(
         "information/scrape/",
         views.InformationScraperView.as_view(),
         name="information-scrape",

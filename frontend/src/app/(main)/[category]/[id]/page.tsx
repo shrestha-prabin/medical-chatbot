@@ -1,21 +1,20 @@
-import { Information } from "@/types";
 import { Center, Container } from "@chakra-ui/react";
 
 import { Prose } from "@/components/ui/prose";
-import _ from "lodash";
+import { cookies } from "next/headers";
 
 export default async function Page({
   params,
 }: {
-  params: { category: string; slug: string };
+  params: { category: string; id: string };
 }) {
+  const _cookies = cookies();
+
   const data = await fetch(
-    `${process.env.BASE_URL}/api/knowledge/information/`
+    `${process.env.BASE_URL}/api/knowledge/information/${params.id}`
   );
-  const informationList: Information[] = await data.json();
-  const information = informationList.find(
-    (item) => _.kebabCase(item.title) == params.slug
-  );
+  const information = await data.json();
+  console.log("🚀 ~ information:", information);
 
   return (
     <div>

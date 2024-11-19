@@ -1,7 +1,7 @@
 databases:
-  - name: medical-chatbot
+  - name: mysitedb
     plan: free
-    databaseName: medicalchatbot
+    databaseName: mysite
     user: mysite
 
 services:

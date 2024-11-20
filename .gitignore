@@ -2,3 +2,4 @@
 data.json
 .pyc
 models/*.bin
+backend/knowledge/data/

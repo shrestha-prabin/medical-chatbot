@@ -27,6 +27,7 @@ export default function Content({
       const q = searchParams.get("q");
       if (q) {
         handleSubmit(q);
+        router.push("/chat");
       }
     }
   }, [searchParams]);
@@ -36,7 +37,7 @@ export default function Content({
   }, [messages]);
 
   const handleSubmit = async (query: string) => {
-    const lastQuery = messages[messages.length - 1];
+    const lastQuery = messages?.[messages.length - 1];
     if (lastQuery?.user_prompt == query) return;
 
     if (query) {

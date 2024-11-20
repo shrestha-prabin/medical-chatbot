@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-=v+5+ihqjk#rcj%&l)$fun)75@1377&2$9ed^kpd--2xk(&+-4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -90,14 +90,14 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
-    "default": dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+    # "default": dj_database_url.config(
+    #     default=DATABASE_URL,
+    #     conn_max_age=600,
+    # )
 }
 
 

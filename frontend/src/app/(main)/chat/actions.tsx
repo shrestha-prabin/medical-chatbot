@@ -7,12 +7,17 @@ export async function submitQuery(query: string): Promise<Message> {
   console.log("🚀 ~ submitQuery ~ query:", query);
   const user = await auth();
 
+  let headers: any = {
+    "Content-Type": "application/json",
+  };
+
+  if (user?.access) {
+    headers = { ...headers, Authorization: user.access };
+  }
+
   const res = await fetch(`${process.env.BASE_URL}/api/medicalbot/message/`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${user?.access}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({ query }),
   });
   const data = await res.json();

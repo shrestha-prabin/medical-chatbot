@@ -10,7 +10,10 @@ export default async function Page() {
       "Content-Type": "application/json",
     },
   });
-  const data = await res.json();
+  let data = await res.json();
+  console.log("🚀 ~ Page ~ data:", data);
 
-  return <Content messages={data} />;
+  if (!Array.isArray(data)) data = [];
+
+  return <Content messages={data ?? []} />;
 }

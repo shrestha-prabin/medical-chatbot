@@ -65,7 +65,13 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                     @{props.user}
                   </Text>
 
-                  <Button variant={"outline"} onClick={() => signOut()} ml={2}>
+                  <Button
+                    variant={"outline"}
+                    onClick={() =>
+                      signOut({ redirect: true, callbackUrl: "/" })
+                    }
+                    ml={2}
+                  >
                     Logout
                   </Button>
                 </>

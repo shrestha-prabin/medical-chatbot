@@ -10,7 +10,9 @@ from .serializers import MessageSerializer
 
 
 class MessageView(APIView):
-    permission_classes = (AllowAny,)
+    permission_classes = [
+        AllowAny,
+    ]
     serializer_class = MessageSerializer
 
     def get(self, request):

@@ -4,7 +4,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .core.llamav3 import chat
+from .core.llamav3 import chat  # llama from inference api
+
+# from .core.bot import chat  # fine tuned model
 from .models import Message
 from .serializers import MessageSerializer
 

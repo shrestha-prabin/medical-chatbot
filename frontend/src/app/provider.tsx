@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export default function Provider(props: { children: React.ReactNode }) {
   useEffect(() => {
-    if (localStorage.getItem("theme") == "dark") {
+    if (localStorage.getItem("theme") != "light") {
       localStorage.setItem("theme", "light");
       window.location.reload();
     }

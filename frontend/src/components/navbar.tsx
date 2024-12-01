@@ -13,7 +13,6 @@ import Link from "next/link";
 import React from "react";
 import { LuChevronDown } from "react-icons/lu";
 import { Button } from "./ui/button";
-import { ColorModeButton } from "./ui/color-mode";
 
 type NavbarProps = {
   categories: Category[];
@@ -94,7 +93,7 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                 </>
               )}
 
-              <ColorModeButton />
+              {/* <ColorModeButton /> */}
             </HStack>
           </HStack>
         </Container>

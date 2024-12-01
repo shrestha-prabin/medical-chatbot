@@ -13,6 +13,7 @@ import Link from "next/link";
 import React from "react";
 import { LuChevronDown } from "react-icons/lu";
 import { Button } from "./ui/button";
+import { ColorModeButton } from "./ui/color-mode";
 
 type NavbarProps = {
   categories: Category[];
@@ -44,6 +45,7 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                 <MenuContent>
                   {props.categories.map((item) => (
                     <MenuItem
+                      cursor={"pointer"}
                       key={item.slug}
                       value={item.slug}
                       as={Link}
@@ -91,6 +93,8 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                   </Button>
                 </>
               )}
+
+              <ColorModeButton />
             </HStack>
           </HStack>
         </Container>
